@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ContentForm.css'; // Import CSS file
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './ContentForm.css'; 
 
 const ContentForm = () => {
     const [formData, setFormData] = useState({
@@ -33,9 +35,10 @@ const ContentForm = () => {
             
             const res = await axios.post(`${baseUrl}content/create`, formDataObject);
             console.log(res.data);
-            alert("Content added successfully")
+            toast.success("Content added successfully"); // Use toast instead of alert
         } catch (error) {
             console.error(error.response.data);
+            toast.error("Failed to add content");
         }
     };
 
@@ -45,15 +48,15 @@ const ContentForm = () => {
                 <h2 className="form-title">Add Content</h2>
                 <div className="form-group">
                     <label htmlFor="title" className="form-label">Title</label>
-                    <input type="text" id="title" name="title" value={title} onChange={onChange} className="form-input" placeholder="Title" />
+                    <input type="text" id="title" name="title" value={title} onChange={onChange} className="form-input" placeholder="Title" required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description" className="form-label">Description</label>
-                    <input type="text" id="description" name="description" value={description} onChange={onChange} className="form-input" placeholder="Description" />
+                    <input type="text" id="description" name="description" value={description} onChange={onChange} className="form-input" placeholder="Description" required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="url" className="form-label">File Link</label>
-                    <input type="text" id="url" name="url" value={url} onChange={onChange} className="form-input" placeholder="File Link" />
+                    <input type="text" id="url" name="url" value={url} onChange={onChange} className="form-input" placeholder="File Link" required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="mockFile" className="form-label">Upload Notes (add Image/PDF only)</label>
@@ -61,6 +64,7 @@ const ContentForm = () => {
                 </div>
                 <button type="submit" className="form-button">Submit</button>
             </form>
+            <ToastContainer /> 
         </div>
     );
 };
