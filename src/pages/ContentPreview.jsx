@@ -52,7 +52,7 @@ const ContentPreview = () => {
             <>
               <h3 style={{ marginTop: "1rem" }}>Uploaded Notes</h3>
               <object data={`${baseUrl1}${content.mockFile[0]}`} type="application/pdf" width="100%" height="500px">
-                <p>This browser does not support PDFs. Please click the button to download the PDF: <a href={`http://localhost:8080/api/${content.mockFile[0]}`} target="_blank" rel="noopener noreferrer">Download PDF</a></p>
+                <p>This browser does not support PDFs. Please click the button to download the PDF: <a href={`${baseUrl1}${content.mockFile[0]}`} target="_blank" rel="noopener noreferrer">Download PDF</a></p>
               </object>
             </>
           ) : (
